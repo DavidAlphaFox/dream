@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>
+   Methods and status codes — Dream
+  </title>
+  <script src="../highlight.pack.js"></script>
+  <script>
+   hljs.highlightAll();
+  </script>
+  <link href="../docs.css" rel="stylesheet">
+  <script src="../docs.js"></script>
+ </head>
+ <body>
+  <div id="content">
+   <div class="odoc-content">
+    <div class="background"></div>
+    <nav class="odoc-toc">
+     <ul>
+      <li>
+       <a href="#methods">Methods</a>
+      </li>
+      <li>
+       <a href="#status_codes">Status codes</a>
+      </li>
+     </ul>
+    </nav>
+    <h1 id="methods-and-status-codes">
+     <a href="#methods-and-status-codes" class="anchor"></a>Methods and status codes
+    </h1>
+    <h2 id="methods">
+     <div class="backing"></div>
+     <a href="#methods" class="anchor"></a>Methods
+    </h2>
+    <div class="odoc-spec">
+     <div class="multiline spec type" id="type-method_">
+      <div class="backing"></div>
+      <a href="#type-method_" class="anchor"></a>
+<pre class="compact"><span class="keyword">type</span> method_ = [
+  | `GET
+  | `POST
+  | `PUT
+  | `DELETE
+  | `HEAD
+  | `CONNECT
+  | `OPTIONS
+  | `TRACE
+  | `PATCH
+  | `Method <span class="keyword">of</span> string
+]
+</pre>
+     </div>
+     <div class="spec-doc">
+      <p>
+       HTTP request methods. See <a href="https://tools.ietf.org/html/rfc7231#section-4.3">RFC 7231 §4.2</a>, <a href="https://tools.ietf.org/html/rfc5789#page-2">RFC 5789 §2</a>, and <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods">MDN</a>.
+      </p>
+     </div>
+    </div>
+    <div class="odoc-spec">
+     <div class="spec value" id="val-method_to_string">
+      <div class="backing"></div>
+      <a href="#val-method_to_string" class="anchor"></a><code><span><span class="keyword">val</span> method_to_string : <span><a href="#type-method_">method_</a> <span class="arrow">-&gt;</span></span> string</span></code>
+     </div>
+     <div class="spec-doc">
+      <p>
+       Evaluates to a string representation of the given method. For example, <code>`GET</code> is converted to <code>"GET"</code>.
+      </p>
+     </div>
+    </div>
+    <div class="odoc-spec">
+     <div class="spec value" id="val-string_to_method">
+      <div class="backing"></div>
+      <a href="#val-string_to_method" class="anchor"></a><code><span><span class="keyword">val</span> string_to_method : <span>string <span class="arrow">-&gt;</span></span> <a href="#type-method_">method_</a></span></code>
+     </div>
+     <div class="spec-doc">
+      <p>
+       Evaluates to the <a href="#type-method_"><code>method_</code></a> corresponding to the given method string.
+      </p>
+     </div>
+    </div>
+    <div class="odoc-spec">
+     <div class="spec value" id="val-methods_equal">
+      <div class="backing"></div>
+      <a href="#val-methods_equal" class="anchor"></a><code><span><span class="keyword">val</span> methods_equal : <span><a href="#type-method_">method_</a> <span class="arrow">-&gt;</span></span> <span><a href="#type-method_">method_</a> <span class="arrow">-&gt;</span></span> bool</span></code>
+     </div>
+     <div class="spec-doc">
+      <p>
+       Compares two methods, such that equal methods are detected even if one is represented as a string. For example,
+      </p>
+      <pre><code><span class="hljs-type">Dream</span>.methods_equal <span class="hljs-type">`GET</span> (<span class="hljs-type">`Method</span> <span class="hljs-string">"GET"</span>) = <span class="hljs-literal">true</span></code></pre>
+     </div>
+    </div>
+    <h2 id="status_codes">
+     <div class="backing"></div>
+     <a href="#status_codes" class="anchor"></a>Status codes
+    </h2>
+    <div class="odoc-spec">
+     <div class="multiline spec type" id="type-informational">
+      <div class="backing"></div>
+      <a href="#type-informational" class="anchor"></a>
+<pre class="compact"><span class="keyword">type</span> informational = [
+  | `Continue
+  | `Switching_Protocols
+]
+</pre>
+     </div>
+     <div class="spec-doc">
+      <p>
+       Informational (<code>1xx</code>) status codes. See <a href="https://tools.ietf.org/html/rfc7231#section-6.2">RFC 7231 §6.2</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#information_responses">MDN</a>. <code>101 Switching Protocols</code> is generated internally by <a href="../index.html#val-websocket"><code>Dream.websocket</code></a>. It is usually not necessary to use it directly.
+      </p>
+     </div>
+    </div>
+    <div class="odoc-spec">
+     <div class="multiline spec type" id="type-successful">
+      <div class="backing"></div>
+      <a href="#type-successful" class="anchor"></a>
+<pre class="compact"><span class="keyword">type</span> successful = [
+  | `OK
+  | `Created
+  | `Accepted
+  | `Non_Authoritative_Information
+  | `No_Content
+  | `Reset_Content
+  | `Partial_Content
+]</pre>
+     </div>
+     <div class="spec-doc">
+      <p>
+       Successful (<code>2xx</code>) status codes. See <a href="https://tools.ietf.org/html/rfc7231#section-6.3">RFC 7231 §6.3</a>, <a href="https://tools.ietf.org/html/rfc7233#section-4.1">RFC 7233 §4.1</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#successful_responses">MDN</a>. The most common is <code>200 OK</code>.
+      </p>
+     </div>
+    </div>
+    <div class="odoc-spec">
+     <div class="multiline spec type" id="type-redirection">
+      <div class="backing"></div>
+      <a href="#type-redirection" class="anchor"></a>
+<pre class="compact"><span class="keyword">type</span> redirection = [
+  | `Multiple_Choices
+  | `Moved_Permanently
+  | `Found
+  | `See_Other
+  | `Not_Modified
+  | `Temporary_Redirect
+  | `Permanent_Redirect
+]</pre>
+     </div>
+     <div class="spec-doc">
+      <p>
+       Redirection (<code>3xx</code>) status codes. See <a href="https://tools.ietf.org/html/rfc7231#section-6.4">RFC 7231 §6.4</a> and <a href="https://tools.ietf.org/html/rfc7538#section-3">RFC 7538 §3</a>, and <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#redirection_messages">MDN</a>. Use <code>303 See Other</code> to direct clients to follow up with a <code>GET</code> request, especially after a form submission. Use <code>301 Moved Permanently</code> for permanent redirections.
+      </p>
+     </div>
+    </div>
+    <div class="odoc-spec">
+     <div class="multiline spec type" id="type-client_error">
+      <div class="backing"></div>
+      <a href="#type-client_error" class="anchor"></a>
+<pre class="compact"><span class="keyword">type</span> client_error = [
+  | `Bad_Request
+  | `Unauthorized
+  | `Payment_Required
+  | `Forbidden
+  | `Not_Found
+  | `Method_Not_Allowed
+  | `Not_Acceptable
+  | `Proxy_Authentication_Required
+  | `Request_Timeout
+  | `Conflict
+  | `Gone
+  | `Length_Required
+  | `Precondition_Failed
+  | `Payload_Too_Large
+  | `URI_Too_Long
+  | `Unsupported_Media_Type
+  | `Range_Not_Satisfiable
+  | `Expectation_Failed
+  | `Misdirected_Request
+  | `Too_Early
+  | `Upgrade_Required
+  | `Precondition_Required
+  | `Too_Many_Requests
+  | `Request_Header_Fields_Too_Large
+  | `Unavailable_For_Legal_Reasons
+]</pre>
+     </div>
+     <div class="spec-doc">
+      <p>
+       Client error (<code>4xx</code>) status codes. The most common are <code>400 Bad Request</code>, <code>401 Unauthorized</code>, <code>403 Forbidden</code>, and, of course, <code>404 Not Found</code>.
+      </p>
+      <p>
+       See <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#client_error_responses">MDN</a>, and
+      </p>
+      <ul>
+       <li>
+        <a href="https://tools.ietf.org/html/rfc7231#section-6.5">RFC 7231 §6.5</a> for most client error status codes.
+       </li>
+       <li>
+        <a href="https://tools.ietf.org/html/rfc7233#section-4.4">RFC 7233 §4.4</a> for <code>416 Range Not Satisfiable</code>.
+       </li>
+       <li>
+        <a href="https://tools.ietf.org/html/rfc7540#section-9.1.2">RFC 7540 §9.1.2</a> for <code>421 Misdirected Request</code>.
+       </li>
+       <li>
+        <a href="https://tools.ietf.org/html/rfc8470#section-5.2">RFC 8470 §5.2</a> for <code>425 Too Early</code>.
+       </li>
+       <li>
+        <a href="https://tools.ietf.org/html/rfc6585">RFC 6585</a> for <code>428 Precondition Required</code>, <code>429 Too Many Requests</code>, and <code>431 Request
+      Headers Too Large</code>.
+       </li>
+       <li>
+        <a href="https://tools.ietf.org/html/rfc7725">RFC 7725</a> for <code>451 Unavailable For Legal Reasons</code>.
+       </li>
+      </ul>
+     </div>
+    </div>
+    <div class="odoc-spec">
+     <div class="multiline spec type" id="type-server_error">
+      <div class="backing"></div>
+      <a href="#type-server_error" class="anchor"></a>
+<pre class="compact"><span class="keyword">type</span> server_error = [
+  | `Internal_Server_Error
+  | `Not_Implemented
+  | `Bad_Gateway
+  | `Service_Unavailable
+  | `Gateway_Timeout
+  | `HTTP_Version_Not_Supported
+]</pre>
+     </div>
+     <div class="spec-doc">
+      <p>
+       Server error (<code>5xx</code>) status codes. See <a href="https://tools.ietf.org/html/rfc7231#section-6.6">RFC 7231 §6.6</a> and <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Status#server_error_responses">MDN</a>. The most common of these is <code>500 Internal Server Error</code>.
+      </p>
+     </div>
+    </div>
+    <div class="odoc-spec">
+     <div class="multiline spec type" id="type-standard_status">
+      <div class="backing"></div>
+      <a href="#type-standard_status" class="anchor"></a>
+<pre class="compact"><span class="keyword">type</span> standard_status = [
+  | <a href="#type-informational">informational</a>
+  | <a href="#type-successful">successful</a>
+  | <a href="#type-redirection">redirection</a>
+  | <a href="#type-client_error">client_error</a>
+  | <a href="#type-server_error">server_error</a>
+]</pre>
+     </div>
+     <div class="spec-doc">
+      <p>
+       Sum of all the status codes declared above.
+      </p>
+     </div>
+    </div>
+    <div class="odoc-spec">
+     <div class="multiline spec type" id="type-status">
+      <div class="backing"></div>
+      <a href="#type-status" class="anchor"></a>
+<pre class="compact"><span class="keyword">type</span> status = [
+  | <a href="#type-standard_status">standard_status</a>
+  | `Status <span class="keyword">of</span> int
+]</pre>
+     </div>
+     <div class="spec-doc">
+      <p>
+       Status codes, including codes directly represented as integers. See the types above for the full list and references.
+      </p>
+     </div>
+    </div>
+    <div class="odoc-spec">
+     <div class="spec value" id="val-status_to_string">
+      <div class="backing"></div>
+      <a href="#val-status_to_string" class="anchor"></a><code><span><span class="keyword">val</span> status_to_string : <span><a href="#type-status">status</a> <span class="arrow">-&gt;</span></span> string</span></code>
+     </div>
+     <div class="spec-doc">
+      <p>
+       Evaluates to a string representation of the given status. For example, <code>`Not_Found</code> and <code>`Status 404</code> are both converted to <code>"Not Found"</code>. Numbers are used for unknown status codes. For example, <code>`Status 567</code> is converted to <code>"567"</code>.
+      </p>
+     </div>
+    </div>
+    <div class="odoc-spec">
+     <div class="spec value" id="val-status_to_reason">
+      <div class="backing"></div>
+      <a href="#val-status_to_reason" class="anchor"></a><code><span><span class="keyword">val</span> status_to_reason : <span><a href="#type-status">status</a> <span class="arrow">-&gt;</span></span> <span>string option</span></span></code>
+     </div>
+     <div class="spec-doc">
+      <p>
+       Converts known status codes to their string representations. Evaluates to <code>None</code> for unknown status codes.
+      </p>
+     </div>
+    </div>
+    <div class="odoc-spec">
+     <div class="spec value" id="val-status_to_int">
+      <div class="backing"></div>
+      <a href="#val-status_to_int" class="anchor"></a><code><span><span class="keyword">val</span> status_to_int : <span><a href="#type-status">status</a> <span class="arrow">-&gt;</span></span> int</span></code>
+     </div>
+     <div class="spec-doc">
+      <p>
+       Evaluates to the numeric value of the given status code.
+      </p>
+     </div>
+    </div>
+    <div class="odoc-spec">
+     <div class="spec value" id="val-int_to_status">
+      <div class="backing"></div>
+      <a href="#val-int_to_status" class="anchor"></a><code><span><span class="keyword">val</span> int_to_status : <span>int <span class="arrow">-&gt;</span></span> <a href="#type-status">status</a></span></code>
+     </div>
+     <div class="spec-doc">
+      <p>
+       Evaluates to the symbolic representation of the status code with the given number.
+      </p>
+     </div>
+    </div>
+    <div class="odoc-spec">
+     <div class="spec value" id="val-is_informational">
+      <div class="backing"></div>
+      <a href="#val-is_informational" class="anchor"></a><code><span><span class="keyword">val</span> is_informational : <span><a href="#type-status">status</a> <span class="arrow">-&gt;</span></span> bool</span></code>
+     </div>
+     <div class="spec-doc">
+      <p>
+       Evaluates to <code>true</code> if the given status is either from type <a href="../index.html#type-informational"><code>Dream.informational</code></a>, or is in the range <code>`Status 100</code> — <code>`Status 199</code>.
+      </p>
+     </div>
+    </div>
+    <div class="odoc-spec">
+     <div class="spec value" id="val-is_successful">
+      <div class="backing"></div>
+      <a href="#val-is_successful" class="anchor"></a><code><span><span class="keyword">val</span> is_successful : <span><a href="#type-status">status</a> <span class="arrow">-&gt;</span></span> bool</span></code>
+     </div>
+     <div class="spec-doc">
+      <p>
+       Like <a href="../index.html#val-is_informational"><code>Dream.is_informational</code></a>, but for type <a href="../index.html#type-successful"><code>Dream.successful</code></a> and numeric codes <code>2xx</code>.
+      </p>
+     </div>
+    </div>
+    <div class="odoc-spec">
+     <div class="spec value" id="val-is_redirection">
+      <div class="backing"></div>
+      <a href="#val-is_redirection" class="anchor"></a><code><span><span class="keyword">val</span> is_redirection : <span><a href="#type-status">status</a> <span class="arrow">-&gt;</span></span> bool</span></code>
+     </div>
+     <div class="spec-doc">
+      <p>
+       Like <a href="../index.html#val-is_informational"><code>Dream.is_informational</code></a>, but for type <a href="../index.html#type-redirection"><code>Dream.redirection</code></a> and numeric codes <code>3xx</code>.
+      </p>
+     </div>
+    </div>
+    <div class="odoc-spec">
+     <div class="spec value" id="val-is_client_error">
+      <div class="backing"></div>
+      <a href="#val-is_client_error" class="anchor"></a><code><span><span class="keyword">val</span> is_client_error : <span><a href="#type-status">status</a> <span class="arrow">-&gt;</span></span> bool</span></code>
+     </div>
+     <div class="spec-doc">
+      <p>
+       Like <a href="../index.html#val-is_informational"><code>Dream.is_informational</code></a>, but for type <a href="../index.html#type-client_error"><code>Dream.client_error</code></a> and numeric codes <code>4xx</code>.
+      </p>
+     </div>
+    </div>
+    <div class="odoc-spec">
+     <div class="spec value" id="val-is_server_error">
+      <div class="backing"></div>
+      <a href="#val-is_server_error" class="anchor"></a><code><span><span class="keyword">val</span> is_server_error : <span><a href="#type-status">status</a> <span class="arrow">-&gt;</span></span> bool</span></code>
+     </div>
+     <div class="spec-doc">
+      <p>
+       Like <a href="../index.html#val-is_informational"><code>Dream.is_informational</code></a>, but for type <a href="../index.html#type-server_error"><code>Dream.server_error</code></a> and numeric codes <code>5xx</code>.
+      </p>
+     </div>
+    </div>
+    <div class="odoc-spec">
+     <div class="spec value" id="val-status_codes_equal">
+      <div class="backing"></div>
+      <a href="#val-status_codes_equal" class="anchor"></a><code><span><span class="keyword">val</span> status_codes_equal : <span><a href="#type-status">status</a> <span class="arrow">-&gt;</span></span> <span><a href="#type-status">status</a> <span class="arrow">-&gt;</span></span> bool</span></code>
+     </div>
+     <div class="spec-doc">
+      <p>
+       Compares two status codes, such that equal codes are detected even if one is represented as a number. For example,
+      </p>
+      <pre><code><span class="hljs-type">Dream</span>.status_codes_equal <span class="hljs-type">`Not_Found</span> (<span class="hljs-type">`Status</span> <span class="hljs-number">404</span>) = <span class="hljs-literal">true</span></code></pre>
+     </div>
+    </div>
+   </div>
+  </div>
+  <footer>
+   Copyright © 2021 Anton Bachin. Released under the MIT license.
+  </footer>
+ </body>
+</html>
